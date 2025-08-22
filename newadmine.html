@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Add Item</title>
+  <style>
+    body {
+      background-image: url("61.png");
+      background-size: cover;
+      background-attachment: fixed;
+      margin: 0;
+      font-family: sans-serif;
+    }
+    #h2 {
+      text-align: center;
+      font-size: clamp(30px, 6vw, 80px);
+      text-shadow: 0px 0px 5px;
+      margin-top: 20px;
+    }
+    #div1 {
+      background: gray;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .inp1, .inp2 {
+      width: 90%;
+      max-width: 700px;
+      height: 70px;
+      font-size: clamp(18px, 4vw, 28px);
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      box-shadow: 0px 0px 3px #000;
+    }
+    #sub {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border: none;
+      border-radius: 10px;
+      width: clamp(150px, 50%, 250px);
+      height: 60px;
+      font-size: clamp(14px, 3vw, 22px);
+      cursor: pointer;
+    }
+    .add {
+      width: clamp(150px, 50%, 250px);
+      height: 60px;
+      border-radius: 15px;
+      border: none;
+      font-size: clamp(16px, 4vw, 28px);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2 id="h2">Welcome To Your Store (Admin)</h2>
+  <div id="div"></div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyChgu_kWTePaKuPog0GfHYttKH4IyjRtdY",
+      authDomain: "new-jo.firebaseapp.com",
+      projectId: "new-jo",
+      storageBucket: "new-jo.firebasestorage.app",
+      messagingSenderId: "539520802754",
+      appId: "1:539520802754:web:afdeeeec38b84a1f1c405b",
+      measurementId: "G-S9Q0C0PQZ6"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const div=document.getElementById("div");
+    
+    if(localStorage.getItem("na")=="maryam" && localStorage.getItem("password")==11){
+      const div1=document.createElement("div");
+      div1.id="div1";
+
+      const inp1=document.createElement("input");
+      inp1.type="text";
+      inp1.placeholder="enter name";
+      inp1.className="inp1";
+      div1.appendChild(inp1);
+
+      const inp2=document.createElement("input");
+      inp2.type="number";
+      inp2.placeholder="enter salary";
+      inp2.className="inp2";
+      div1.appendChild(inp2);
+
+      const label=document.createElement("label");
+      label.setAttribute("for","inp3");
+      label.id="sub";
+      label.textContent="Choose Photo";
+      div1.appendChild(label);
+
+      const inp3=document.createElement("input");
+      inp3.type="file";
+      inp3.id="inp3";
+      inp3.hidden=true;
+      div1.appendChild(inp3);
+
+      const add=document.createElement("button");
+      add.textContent="Add";
+      add.className="add";
+      div1.appendChild(add);
+
+      div.appendChild(div1);
+
+      add.onclick = async () => {
+        const name = inp1.value.trim();
+        const salary = inp2.value.trim();
+        const file = inp3.files[0];
+        if (!name || !salary) {
+          alert("الاسم والسعر مطلوبان");
+          return;
+        }
+
+        let base64Image = null;
+        if (file) {
+          base64Image = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+          });
+        }
+
+        try {
+          await addDoc(collection(db, "items"), {
+            name,
+            salary,
+            image: base64Image,
+            createdAt: Date.now()
+          });
+          location.href = "newoffer.html";
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
+      };
+    } else {
+      location.href="newoffer.html";
+    }
+  </script>
+</body>
+</html>
+

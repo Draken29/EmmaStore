@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offers</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    #img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    #k {
+      background-color: #fcfafa;
+      border-radius: 5px;
+      box-shadow: 0px 0px 5px;
+      padding: 10px;
+      position: absolute;
+      top: 100px;
+      left: 10px;
+      width: 200px;
+      display: none;
+    }
+    #bu {
+      margin-top: 10px;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      background: #444;
+      color: white;
+      cursor: pointer;
+    }
+    #p {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      padding: 15px;
+    }
+    .cocy {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .cocy:hover {
+      transform: scale(1.02);
+    }
+    .cocy img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      background: #f9f9f9;
+    }
+    .cocy h3 {
+      margin: 10px;
+    }
+    .remove-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      border: none;
+      background: crimson;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+    <img id="img" src="" alt="User Image">
+  </div>
+
+  <div id="p"></div>
+  <div id="k"></div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyChgu_kWTePaKuPog0GfHYttKH4IyjRtdY",
+      authDomain: "new-jo.firebaseapp.com",
+      projectId: "new-jo",
+      storageBucket: "new-jo.firebasestorage.app",
+      messagingSenderId: "539520802754",
+      appId: "1:539520802754:web:afdeeeec38b84a1f1c405b",
+      measurementId: "G-S9Q0C0PQZ6"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const span = document.getElementById("p");
+    const userImg = document.getElementById("img");
+    const storedPhoto = localStorage.getItem("photo");
+    const k = document.getElementById("k");
+    const bu = document.createElement("button");
+    let gf = 0;
+
+    if (localStorage.getItem("loggedIn") === "true") {
+      userImg.src = storedPhoto;
+      bu.innerHTML = "log out";
+    } else {
+      userImg.src = "1752598349930.png";
+      bu.innerHTML = "log in";
+    }
+
+    bu.id = "bu";
+
+    userImg.onclick = () => {
+      k.innerHTML = `<p>Name: ${localStorage.getItem("na") || "Guest"}</p>`;
+      k.appendChild(bu);
+      k.style.display = (gf === 0) ? "block" : "none";
+      gf = (gf === 0) ? 1 : 0;
+    };
+
+    bu.onclick = () => {
+      localStorage.setItem("loggedIn", "false");
+      location.href = "newlogin.html";
+    };
+
+    async function loadItems() {
+      span.innerHTML = "";
+      const querySnapshot = await getDocs(collection(db, "items"));
+      let items = [];
+      querySnapshot.forEach((docSnap) => {
+        items.push({ id: docSnap.id, ...docSnap.data() });
+      });
+
+      items.sort((a, b) => b.createdAt - a.createdAt);
+
+      items.forEach((item) => {
+        const container = document.createElement("div");
+        container.classList.add("cocy");
+
+        if (item.image) {
+          const img = document.createElement("img");
+          img.src = item.image;
+          container.appendChild(img);
+        }
+
+        const name = document.createElement("h3");
+        name.textContent = item.name;
+        container.appendChild(name);
+
+        const footer = document.createElement("div");
+        footer.className = "card-footer";
+
+        const salary = document.createElement("h3");
+        salary.textContent = `Salary: ${item.salary}$`;
+        footer.appendChild(salary);
+
+        if (localStorage.getItem("na") == "maryam" && localStorage.getItem("password") == 11) {
+          const butt = document.createElement("button");
+          butt.innerHTML = "remove";
+          butt.className = "remove-btn";
+          footer.appendChild(butt);
+
+          butt.onclick = async () => {
+            await deleteDoc(doc(db, "items", item.id));
+            loadItems();
+          };
+        }
+
+        container.appendChild(footer);
+        span.appendChild(container);
+      });
+    }
+
+    loadItems();
+  </script>
+</body>
+</html>

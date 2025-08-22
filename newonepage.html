@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emma Store</title>
+  <link rel="icon" href="10.jpg">
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    body{
+      font-family: sans-serif;
+    }
+    #div{
+      background-image: url("11.png");
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+    #h1{
+      color: white;
+      font-size: clamp(20px, 3vw, 30px);
+      margin-bottom: 10px;
+    }
+    #hr{
+      width: 100px;
+      border-color: rgb(227, 131, 131);
+      margin: 10px auto;
+    }
+    #h2{
+      font-size: clamp(40px, 8vw, 90px);
+      color: white;
+      margin: 20px 0;
+      transition: opacity 0.3s ease;
+    }
+    #sub{
+      width:200px;
+      height:50px;
+      border-radius: 50px;
+      border: none;
+      background-color: rgb(221, 60, 114);
+      box-shadow: 0px 0px 5px;
+      transition: transform 0.3s ease,opacity 0.3s ease;
+      transform-origin: center;
+      font-size: 16px;
+    }
+    #sub:hover{
+      transform: scale(1.2);
+    }
+    #h3{
+      color: white;
+      position: fixed;
+      top:10px;
+      right:20px;
+      font-size: clamp(14px, 2vw, 20px);
+    }
+    #p1{
+      color: white;
+      position: fixed;
+      top: 40px;
+      right:20px;
+      font-size: clamp(12px, 1.8vw, 18px);
+    }
+    #sub1{
+      width:120px;
+      height:40px;
+      border-radius: 50px;
+      border: none;
+      background-color: palevioletred;
+      font-size: 15px;
+      box-shadow: 0px 0px 5px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 9999; 
+      transition: transform 0.3s ease,opacity 0.3s ease;
+    }
+    #sub1:hover{
+      transform:scale(1.2);
+    }
+    #p3{
+      background-color: white;
+      width:100%;
+      padding: 50px 20px;
+    }
+    #h5{
+      text-align: center;
+      background-color: aliceblue;
+      padding: 20px;
+      font-size: clamp(14px, 2vw, 20px);
+    }
+    #h6{
+      text-align: center;
+      color: black;
+      margin-top: 40px;
+    }
+    #hr1{
+      border-color: palevioletred;
+      width:150px;
+      margin: 10px auto;
+    }
+    .events {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  align-items: stretch;  /* مهم حتى كل الكروت يصيرن نفس الطول */
+  flex-wrap: wrap;
+}
+.event {
+  flex: 1 1 300px;   /* كل وحدة تاخذ نفس المساحة */
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+  .event img {
+  width: 100%;
+  aspect-ratio: 3/4;   /* يثبت النسبة، مثلاً 3:4 */
+  object-fit: cover;
+  display: block;
+  border: 4px solid rgb(126, 114, 126); /* مجرد مثال للحدود */
+}
+
+  .event h3,
+.event h4 {
+  margin: 10px 0;
+  text-align: center;
+}
+
+    .event h4{
+      margin-top: 10px;
+      font-size: 14px;
+      color: #333;
+    }
+ #p5{
+  background-color: black;
+  min-height:200px;   /* يتعدل حسب المحتوى */
+  width: 100%;        /* يغطي الصفحة كلها */
+  margin-top: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* ما يخلي فجوات */
+}
+#em{
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+
+
+  </style>
+</head>
+<body>
+  <div id="div">
+    <h1 id="h3">BEAUTYPAGE</h1>
+    <p id="p1">BE B EAU T IF U L EVER</p>
+    <button id="sub1">Log in</button>
+    <h1 id="h1">Explore the finest clothing</h1>
+    <hr id="hr">
+    <h1 id="h2">EMMA STORE SH</h1>
+    <button id="sub">The Offers</button> 
+  </div>
+
+  <div id="p3">
+    <p id="h5">"Clothes mean nothing until someone wears them and brings them to life."
+      <br><br>Marc Jacobs-
+    </p>
+    <h1 id="h6">SOME EVENTS WE HAVE</h1>
+    <hr id="hr1">
+
+    <div class="events">
+      <div class="event">
+        <img src="7.png" alt="">
+        <h3>short pink dress</h3>
+        <h4>Always be beautiful and radiant in what you wear and look like.<br>We have the best and finest types.</h4>
+      </div>
+      <div class="event">
+        <img src="3.jpg" alt="">
+        <h3>The beautiful black dress</h3>
+        <h4>There are beautiful clothes at a good price in full for my dear in due course until payment is made.</h4>
+      </div>
+    </div>
+
+    <div id="p5">
+      <h5 id="em">EMMA STORE</h5>
+    </div> 
+  </div>
+
+<script>
+  const sub=document.getElementById("sub");
+  const sub1=document.getElementById("sub1");
+  sub1.onclick=()=> location.href="newlogin.html";
+  sub.onclick=()=> location.href="newoffer.html";
+</script>
+</body>
+</html>
