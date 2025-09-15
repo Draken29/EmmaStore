@@ -120,6 +120,8 @@
     } else {
       userImg.src = "1752598349930.png";
       k.innerHTML = `<p>Name: ${" "}</p>`;
+      localStorage.getItem("na") == "";
+      localStorage.getItem("password") == 0;
       bu.innerHTML = "log in";
     }
 
@@ -168,7 +170,7 @@
         salary.textContent = `Salary: ${item.salary}$`;
         footer.appendChild(salary);
 
-        if (localStorage.getItem("na") == "maryam" && localStorage.getItem("password") == 11&& localStorage.getItem("loggedIn") === "true") {
+        if (localStorage.getItem("na") == "maryam" && localStorage.getItem("password") == 11) {
           const butt = document.createElement("button");
           butt.innerHTML = "remove";
           butt.className = "remove-btn";
