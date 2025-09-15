@@ -115,11 +115,11 @@
 
     if (localStorage.getItem("loggedIn") === "true") {
       userImg.src = storedPhoto;
-      k.innerHTML = `<p>Name: ${" "}</p>`;
+      k.innerHTML = `<p>Name: ${localStorage.getItem("na") || "Guest"}</p>`;
       bu.innerHTML = "log out";
     } else {
       userImg.src = "1752598349930.png";
-      k.innerHTML = `<p>Name: ${localStorage.getItem("na") || "Guest"}</p>`;
+      k.innerHTML = `<p>Name: ${" "}</p>`;
       bu.innerHTML = "log in";
     }
 
