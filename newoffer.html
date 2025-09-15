@@ -168,7 +168,7 @@
         salary.textContent = `Salary: ${item.salary}$`;
         footer.appendChild(salary);
 
-        if (localStorage.getItem("na") == "maryam" && localStorage.getItem("password") == 11) {
+        if (localStorage.getItem("na") == "maryam" && localStorage.getItem("password") == 11&& localStorage.getItem("loggedIn") === "true") {
           const butt = document.createElement("button");
           butt.innerHTML = "remove";
           butt.className = "remove-btn";
