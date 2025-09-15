@@ -115,16 +115,18 @@
 
     if (localStorage.getItem("loggedIn") === "true") {
       userImg.src = storedPhoto;
+      k.innerHTML = `<p>Name: ${" "}</p>`;
       bu.innerHTML = "log out";
     } else {
       userImg.src = "1752598349930.png";
+      k.innerHTML = `<p>Name: ${localStorage.getItem("na") || "Guest"}</p>`;
       bu.innerHTML = "log in";
     }
 
     bu.id = "bu";
 
     userImg.onclick = () => {
-      k.innerHTML = `<p>Name: ${localStorage.getItem("na") || "Guest"}</p>`;
+      
       k.appendChild(bu);
       k.style.display = (gf === 0) ? "block" : "none";
       gf = (gf === 0) ? 1 : 0;
