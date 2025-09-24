@@ -85,8 +85,7 @@
 
     const div=document.getElementById("div");
     
-    // ✅ تعديل الشرط: قارن الـ password كسلسلة نصية
-    if(localStorage.getItem("na")=="maryam" && localStorage.getItem("password")=="11"){
+    if(localStorage.getItem("na")=="maryam" && localStorage.getItem("password")==11){
       const div1=document.createElement("div");
       div1.id="div1";
 
@@ -150,7 +149,6 @@
           location.href = "newoffer.html";
         } catch (e) {
           console.error("Error adding document: ", e);
-          alert("Error: " + e.message);
         }
       };
     } else {
