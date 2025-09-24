@@ -113,16 +113,12 @@
   const name = document.getElementById("name");
   const pass = document.getElementById("pass");
 
-  send.onclick = () => {
-    if(name.value === "maryam" && pass.value === 11) {
+  send.onclick=()=>{
+    if(name.value==localStorage.getItem("na")&&pass.value==localStorage.getItem("password")){
       // المسؤول
       localStorage.setItem("loggedIn", "true");
-      location.href = "newadmine.html"; 
-    } else {
-      // أي مستخدم آخر
-      localStorage.setItem("loggedIn", "true");
-      location.href = "newoffer.html";
-    }
+      location.href="newadmine.html";
+    } 
   }
 </script>
 
