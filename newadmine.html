@@ -84,7 +84,8 @@
     const db = getFirestore(app);
 
     const div=document.getElementById("div");
-    
+
+    // تحقق من المستخدم الصحيح
     if(localStorage.getItem("na")=="maryam" && localStorage.getItem("password")==11){
       const div1=document.createElement("div");
       div1.id="div1";
@@ -146,14 +147,17 @@
             image: base64Image,
             createdAt: Date.now()
           });
-          location.href = "newoffer.html";
+          alert("تمت الإضافة بنجاح!");
+          inp1.value = "";
+          inp2.value = "";
+          inp3.value = "";
         } catch (e) {
           console.error("Error adding document: ", e);
         }
       };
-    } else {
-      location.href="newoffer.html";
     }
+
+    // لاحظ: لا يوجد else، أي مستخدم آخر يبقى في الصفحة بدون تحويل
   </script>
 </body>
 </html>
