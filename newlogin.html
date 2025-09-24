@@ -19,26 +19,18 @@
     }
 
     form{
-  box-shadow: 0px 0px 5px;
-  width: 90%;
-  max-width: 450px;
-  height: 500px;  
-  border-radius: 5px;
-  padding: 30px 20px;
-  position: relative;
-  background: rgba(255,255,255,0.05);
-  display: flex;             
-  flex-direction: column;
-  justify-content: center;   
-  align-items: center;       
-    }
-
-    #img{
-      width:100px;
-      height:100px;
-      border-radius: 50%;
-      display: block;
-      margin: 0 auto 20px auto;
+      box-shadow: 0px 0px 5px;
+      width: 90%;
+      max-width: 450px;
+      height: 500px;  
+      border-radius: 5px;
+      padding: 30px 20px;
+      position: relative;
+      background: rgba(255,255,255,0.05);
+      display: flex;             
+      flex-direction: column;
+      justify-content: center;   
+      align-items: center;       
     }
 
     #name, #pass{
@@ -64,40 +56,11 @@
       cursor: pointer;
     }
 
-    #pho {
-      display: block;
-      margin: 10px auto;
-      color: transparent;
-      width: 120px;
-      height: 35px;
-      overflow: hidden;
-    }
-
-    #pho::-webkit-file-upload-button {
-      border: none;
-      border-radius: 10px;
-      padding: 5px 10px;
-      font-size: 14px;
-      cursor: pointer;
-      width: 100%;
-      opacity:0;
-    }
-
     #a{
       color: white;
       display: block;
       text-align: center;
       margin-top: 20px;
-    }
-
-    /* Media query للشاشات الصغيرة */
-    @media (max-width: 500px){
-      #name, #pass{
-        max-width: 90%;
-      }
-      #send{
-        width: 100px;
-      }
     }
   </style>
 </head>
@@ -105,22 +68,26 @@
   <form>
     <input type="text" id="name" placeholder="enter name" ><br>
     <input type="password" id="pass" placeholder="enter password"><br>
-    <button  type="button" id="send">send</button>
+    <button type="button" id="send">send</button>
     <a href="newsignup.html" id="a">you don't have account? sign up</a>
   </form>
-<script>
-  const send = document.getElementById("send");
-  const name = document.getElementById("name");
-  const pass = document.getElementById("pass");
 
-  send.onclick=()=>{
-    if(name.value==localStorage.getItem("na")&&pass.value==localStorage.getItem("password")){
-      // المسؤول
-      localStorage.setItem("loggedIn", "true");
-      location.href="newadmine.html";
-    } 
-  }
-</script>
+  <script>
+    const send = document.getElementById("send");
+    const name = document.getElementById("name");
+    const pass = document.getElementById("pass");
 
+    send.onclick = () => {
+      if(name.value === "maryam" && pass.value === "11"){
+        // المسؤول
+        localStorage.setItem("loggedIn", "true");
+        location.href = "newadmine.html";
+      } else {
+        // أي مستخدم آخر
+        localStorage.setItem("loggedIn", "true");
+        location.href = "newoffer.html";
+      }
+    }
+  </script>
 </body>
 </html>
