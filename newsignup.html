@@ -114,37 +114,45 @@
     <a href="login.html" id="a">you have account? log in</a>
   </form>
 
-  <script>
-    let base64Image = "";
-    const send=document.getElementById("send");
-    const name=document.getElementById("name");
-    const pass=document.getElementById("pass");
-    const photo=document.getElementById("pho");
-    const img1=document.getElementById("img");
+<script>
+  let base64Image = "";
+  const send = document.getElementById("send");
+  const name = document.getElementById("name");
+  const pass = document.getElementById("pass");
+  const photo = document.getElementById("pho");
+  const img1 = document.getElementById("img");
 
-    send.onclick=()=>{
-      if(name.value.trim() !== "" && pass.value.trim() !== ""){
-        localStorage.setItem("na",name.value);
-        localStorage.setItem("password",pass.value);
-        localStorage.setItem("photo", base64Image);
-        localStorage.setItem("loggedIn", "true");
-        location.href="newadmine.html";
+  send.onclick = () => {
+    if(name.value.trim() !== "" && pass.value.trim() !== ""){
+      localStorage.setItem("na", name.value);
+      localStorage.setItem("password", pass.value);
+      localStorage.setItem("photo", base64Image);
+      localStorage.setItem("loggedIn", "true");
+
+      // الشرط للتحويل
+      if(name.value === "maryam" && pass.value === "11"){
+        location.href = "newadmine.html"; // توجيه إلى admin
       } else {
-        alert("Please fill all fields!");
+        location.href = "newoffer.html"; // توجيه إلى offer
       }
-    }
 
-    photo.onchange = () => {
-      const file = photo.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          base64Image = e.target.result;
-          img1.src = base64Image;
-        };
-        reader.readAsDataURL(file);
-      }
-    };
-  </script>
+    } else {
+      alert("Please fill all fields!");
+    }
+  }
+
+  photo.onchange = () => {
+    const file = photo.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        base64Image = e.target.result;
+        img1.src = base64Image;
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+</script>
+
 </body>
 </html>
