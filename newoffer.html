@@ -114,18 +114,21 @@
     let gf = 0;
 
     if (localStorage.getItem("loggedIn") === "true") {
-      userImg.src = storedPhoto || "1752598349930.png";
+      userImg.src = storedPhoto;
       k.innerHTML = `<p>Name: ${localStorage.getItem("na") || "Guest"}</p>`;
       bu.innerHTML = "log out";
     } else {
       userImg.src = "1752598349930.png";
-      k.innerHTML = `<p>Name: Guest</p>`;
+      k.innerHTML = `<p>Name: ${" "}</p>`;
+      localStorage.getItem("na") == "";
+      localStorage.getItem("password") == 0;
       bu.innerHTML = "log in";
     }
 
     bu.id = "bu";
 
     userImg.onclick = () => {
+      
       k.appendChild(bu);
       k.style.display = (gf === 0) ? "block" : "none";
       gf = (gf === 0) ? 1 : 0;
@@ -144,7 +147,6 @@
         items.push({ id: docSnap.id, ...docSnap.data() });
       });
 
-      // الترتيب بحيث الأحدث يظهر أول
       items.sort((a, b) => b.createdAt - a.createdAt);
 
       items.forEach((item) => {
@@ -168,8 +170,7 @@
         salary.textContent = `Salary: ${item.salary}$`;
         footer.appendChild(salary);
 
-        // زر الحذف يظهر فقط إذا الأدمن
-        if (localStorage.getItem("na")=="maryam" && localStorage.getItem("password")=="11") {
+        if (localStorage.getItem("na") == "maryam" && localStorage.getItem("password") == 11) {
           const butt = document.createElement("button");
           butt.innerHTML = "remove";
           butt.className = "remove-btn";
