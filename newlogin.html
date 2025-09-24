@@ -78,15 +78,12 @@
     const pass = document.getElementById("pass");
 
     send.onclick = () => {
-      if(name.value === "maryam" && pass.value === 11){
-        // المسؤول
-        localStorage.setItem("loggedIn", "true");
-        location.href = "newadmine.html";
-      } else {
-        // أي مستخدم آخر
-        localStorage.setItem("loggedIn", "true");
-        location.href = "newoffer.html";
-      }
+      if(name.value.trim() === "maryam" && pass.value.trim() === "11"){
+    location.href = "newadmine.html";
+} else {
+    location.href = "newoffer.html";
+}
+
     }
   </script>
 </body>
