@@ -108,16 +108,23 @@
     <button  type="button" id="send">send</button>
     <a href="newsignup.html" id="a">you don't have account? sign up</a>
   </form>
-  <script>
-    const send=document.getElementById("send");
-    const name=document.getElementById("name");
-    const pass=document.getElementById("pass");
-    send.onclick=()=>{
-      if(name.value==localStorage.getItem("na")&&pass.value==localStorage.getItem("password")){
+<script>
+  const send = document.getElementById("send");
+  const name = document.getElementById("name");
+  const pass = document.getElementById("pass");
+
+  send.onclick = () => {
+    if(name.value === "maryam" && pass.value === 11) {
+      // المسؤول
       localStorage.setItem("loggedIn", "true");
-      location.href="newadmine.html";
-      }
+      location.href = "newadmine.html"; 
+    } else {
+      // أي مستخدم آخر
+      localStorage.setItem("loggedIn", "true");
+      location.href = "newoffer.html";
     }
-  </script>
+  }
+</script>
+
 </body>
 </html>
