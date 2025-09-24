@@ -130,11 +130,12 @@
       localStorage.setItem("loggedIn", "true");
 
       // الشرط للتحويل
-      if(name.value === "maryam" && pass.value === "11"){
-        location.href = "newadmine.html"; // توجيه إلى admin
-      } else {
-        location.href = "newoffer.html"; // توجيه إلى offer
-      }
+      if(name.value.trim() === "maryam" && pass.value.trim() === "11"){
+    location.href = "newadmine.html";
+} else {
+    location.href = "newoffer.html";
+}
+
 
     } else {
       alert("Please fill all fields!");
